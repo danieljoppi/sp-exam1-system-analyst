@@ -178,8 +178,8 @@ module.exports = function(grunt) {
      */
 
     grunt.registerTask('init', [
-        'clean:build'//,
-        //'resolve'
+        'clean:build',
+        'resolve'
     ]);
 
     grunt.registerTask('build-dev', [
