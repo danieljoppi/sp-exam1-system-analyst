@@ -16,20 +16,38 @@ describe('Service: SpRestService', function () {
     });
 
 
-    it('have REST Service', function() {
+    it('test POST - REST Service', function() {
         expect(service).toBeDefined();
 
         // test POST Method
-        var post = service.post('user', {name: 'daniel.joppi'});
-        expect(post.code).toBe(200);
-        expect(post.result.name).toBe('daniel.joppi');
+        var resp = service.post('user', {name: 'daniel.joppi'});
+        expect(resp.code).toBe(200);
+        expect(resp.result.name).toBe('daniel.joppi');
 
         // test object null
-        var post = service.post('user', null);
-        expect(post.code).toBe(409);
+        resp = service.post('user', null);
+        expect(resp.code).toBe(409);
 
         // test undefined type
-        var post = service.post(null, {name: 'some'});
-        expect(post.code).toBe(409);
+        resp = service.post(null, {name: 'some'});
+        expect(resp.code).toBe(409);
+    });
+
+
+    it('test GET - REST Service', function() {
+        expect(service).toBeDefined();
+
+        // test POST Method
+        var resp = service.get('user', {name: 'daniel.joppi'});
+        expect(resp.code).toBe(200);
+        expect(resp.result.name).toBe('daniel.joppi');
+
+        // test object null
+        resp = service.get('user', null);
+        expect(resp.code).toBe(409);
+
+        // test undefined type
+        resp = service.get(null, {name: 'some'});
+        expect(resp.code).toBe(409);
     });
 });

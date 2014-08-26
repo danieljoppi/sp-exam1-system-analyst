@@ -29,9 +29,15 @@
              * Fake Method for select objects in database.
              * @param type of object to select in database.
              * @param param JSON with filters.
+             * @returns JSON: HTTP 200 to success and HTTP 409 for error in process request.
              */
             get : function(type, param) {
-                return "not implemented";
+                if (type && param) {
+                    return {code: 200, result: param};
+
+                } else {
+                    return {code: 409, error: (!type ? 'type not defined' : 'object is null')};
+                }
             }
         };
     });
