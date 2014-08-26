@@ -1,0 +1,19 @@
+{
+  "name": "suiteplus-prova",
+  "version": "0.2.0",
+  "description": "SuitePlus Test",
+  "authors": [
+    "daniel.joppi"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.21"
+  }
+}
