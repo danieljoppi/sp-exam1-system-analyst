@@ -21,21 +21,16 @@ module.exports = function(grunt) {
         vendorDir: 'src/vendors',
         testDir: 'src/test'
     };
-    /**
-     * Load required Grunt tasks. These are installed based on the versions listed
-     * in `package.json` when you do `npm install` in this directory.
+
+    /*
+     * Load grunt tasks automatically
      */
-    grunt.loadNpmTasks('grunt-angular-templates');
-    grunt.loadNpmTasks('grunt-bower-task');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-compress');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-ngmin');
-    grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-usemin');
+    require('load-grunt-tasks')(grunt);
+
+    /*
+     * Time how long tasks take. Can help when optimizing build times
+     */
+    require('time-grunt')(grunt);
 
   grunt.initConfig({
     pkg: project,
@@ -81,6 +76,22 @@ module.exports = function(grunt) {
           }
       },
 
+      /*
+       * Make sure code styles are up to par and there are no obvious mistakes
+       */
+      jshint: {
+          options: {
+              jshintrc: '.jshintrc',
+              reporter: require('jshint-stylish')
+          },
+          all: {
+              src: ['<%= pkg.mainDir %>{,*/}*.js']
+          },
+          test: {
+              src: ['<%= pkg.testDir %>/spec/{,*/}*.js']
+          }
+      },
+
       /**
        * Compress artifacts to ZIP file.
        */
@@ -116,6 +127,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('build-all', [
+        'jshint',
         'copy',
         'optimize'
     ]);

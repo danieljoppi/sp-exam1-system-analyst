@@ -1,4 +1,4 @@
-sp-exam1-system-analyst
+sp-exam1-system-analyst [![Build Status](https://travis-ci.org/danieljoppi/sp-exam1-system-analyst.svg?branch=master)](https://travis-ci.org/danieljoppi/sp-exam1-system-analyst)
 ============
 
 Required for build
