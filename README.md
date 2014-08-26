@@ -11,9 +11,10 @@ pre-build
 
 build
 ----------
-    # install all projects dependecies for build
+    # install all projects dependencies for build
     npm install
     # install all front-end dependencies for app
     bower install
     # generate pack for distribution
     grunt release
+

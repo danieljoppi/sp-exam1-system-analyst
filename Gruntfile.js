@@ -43,7 +43,27 @@ module.exports = function(grunt) {
       /**
        * The directory to delete when `grunt clean` is executed.
        */
-      clean: [project.vendorDir, project.outDir],
+      clean:{
+        build : [project.vendorDir, project.outDir],
+        server: '.tmp'
+      },
+
+      /*
+       *Add vendor prefixed styles
+       */
+      autoprefixer: {
+          options: {
+              browsers: ['last 1 version']
+          },
+          dist: {
+              files: [{
+                  expand: true,
+                  cwd: '.tmp/styles/',
+                  src: '{,*/}*.css',
+                  dest: '.tmp/styles/'
+              }]
+          }
+      },
 
       /**
        * Copy HTML files.
@@ -85,9 +105,12 @@ module.exports = function(grunt) {
               reporter: require('jshint-stylish')
           },
           all: {
-              src: ['<%= pkg.mainDir %>{,*/}*.js']
+              src: ['<%= pkg.buildDir %>{,*/}*.js']
           },
           test: {
+              options: {
+                  jshintrc: '<%= pkg.testDir %>/.jshintrc'
+              },
               src: ['<%= pkg.testDir %>/spec/{,*/}*.js']
           }
       },
@@ -105,6 +128,44 @@ module.exports = function(grunt) {
                   {expand: true, cwd: project.distDir + '/', src: ['**/*']}
               ]
           }
+      },
+
+
+
+      /*
+       * The actual grunt server settings
+       */
+      connect: {
+          options: {
+              port: 9000,
+              // Change this to '0.0.0.0' to access the server from outside.
+              hostname: 'localhost',
+              livereload: 35729
+          },
+          test: {
+              options: {
+                  port: 9001,
+                  middleware: function (connect) {
+                      return [
+                          connect.static('.tmp'),
+                          connect.static('test'),
+                          connect().use('/<%=pkg.vendorDir %>', connect.static('./<%=pkg.vendorDir %>') ),
+                          connect.static(project.buildDir)
+                      ];
+                  }
+              }
+          }
+      },
+
+      /*
+       * Test settings
+       */
+      karma: {
+          "karma": "~0.12.20",
+          unit: {
+              configFile: '<%= pkg.testDir %>/karma.conf.js',
+              singleRun: true
+          }
       }
   });
 
@@ -117,19 +178,28 @@ module.exports = function(grunt) {
      */
 
     grunt.registerTask('init', [
-        'clean',
+        'clean:build',
         'resolve'
     ]);
 
     grunt.registerTask('build-dev', [
         'copy',
-        'ngtemplates'
+        'ngtemplates',
+        'jshint',
+        'test'
     ]);
 
     grunt.registerTask('build-all', [
-        'jshint',
         'copy',
+        'newer:jshint',
         'optimize'
+    ]);
+
+    grunt.registerTask('test', [
+        'clean:server',
+        'autoprefixer',
+        'connect:test',
+        'karma:unit'
     ]);
 
     grunt.registerTask('resolve', [
@@ -140,12 +210,8 @@ module.exports = function(grunt) {
     grunt.registerTask('release', [
         'init',
         'build-all',
+        'test',
         'compress'
-    ]);
-
-    grunt.registerTask('test', [
-        'build-all',
-        'karma'
     ]);
 
     // simple build task

@@ -7,12 +7,11 @@
 
     app.service('SpRestService', function() {
 
-        // service is just a constructor function
-        // that will be called with 'new'
-
-        this.sayHello = function(name) {
-            return "Hi " + name + "!";
-        };
+        return {
+            sayHello : function(name) {
+                return "Hi " + name + "!";
+            }
+        }
     });
 
 })(angular, spExam);
