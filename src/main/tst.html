@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="spexam" ng-controller="AppCtrl">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <title>SuitePlus Test</title>
+
+    <script src="../vendors/angular/angular.min.js" ></script>
+
+    <!-- build:js sp-exam1-system-analyst.js -->
+    <script src="module.js" ></script>
+    <script src="service/sp-rest-service.js" ></script>
+    <script src="service/sp-calculate-service.js" ></script>
+    <script src="factory/sp-demand-request-factory.js" ></script>
+    <!-- endbuild -->
+    <script>
+(function(ng, app) {
+
+    "use strict";
+    app.controller('AppCtrl', function ($scope) {
+        console.log($scope);
+    });
+})(angular, spExam);
+    </script>
+
+</head>
+<body>
+</body>
+</html>

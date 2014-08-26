@@ -1,11 +1,11 @@
 /**
- * Created by daniel.joppi on 25/08/14.
+ * Created by daniel.joppi on 26/08/14.
  */
 (function(ng, app) {
 
     "use strict";
 
-    app.service('SpRestService', function() {
+    app.service('SpCalculateService', function() {
 
         // service is just a constructor function
         // that will be called with 'new'

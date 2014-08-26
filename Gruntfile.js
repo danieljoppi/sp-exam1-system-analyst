@@ -65,14 +65,14 @@ module.exports = function(grunt) {
       useminPrepare: {
           concat: { },
           cssmin: { },
-          html: project.buildDir + '/idx-*.html',
+          html: project.buildDir + '/*.html',
           options: {
               dest: project.distDir,
               staging: project.buildDir
           }
       },
       uglify: { options: { mangle: false } },
-      usemin: { html: project.distDir + '/idx-*.html' },
+      usemin: { html: project.distDir + '/*.html' },
       ngmin: {
           dist: {
               files: [

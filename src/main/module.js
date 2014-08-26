@@ -1,1 +1,1 @@
-var app = angular.module('suiteplus',[]);
+var spExam = angular.module('spexam',[]);
