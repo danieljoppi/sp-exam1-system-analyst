@@ -1,4 +1,4 @@
-suiteplus-prova
+sp-exam1-system-analyst
 ============
 
 Required for build
