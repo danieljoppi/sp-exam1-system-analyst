@@ -15,7 +15,7 @@
              *
              * @param type of object to insert or update in database.
              * @param obj JSON that contanins the object date.
-             * @returns JSON: HTTP 200 to success and HTTP 409 for error in process request.
+             * @returns JSON: HTTP 200 to success or HTTP 409 for error in process request.
              */
             post : function(type, obj) {
                 if (type && obj) {
@@ -29,7 +29,7 @@
              * Fake Method for select objects in database.
              * @param type of object to select in database.
              * @param param JSON with filters.
-             * @returns JSON: HTTP 200 to success and HTTP 409 for error in process request.
+             * @returns JSON: HTTP 200 to success or HTTP 409 for error in process request.
              */
             get : function(type, param) {
                 if (type && param) {

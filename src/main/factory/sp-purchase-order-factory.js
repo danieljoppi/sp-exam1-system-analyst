@@ -10,14 +10,14 @@
     app.factory('SpPurchaseOrderFactory', function() {
         var config_default = {
             numItens: 1,
-            numDepartamentItens: 1
+            numDepartmentItens: 1
             numSales: 1,
-            numDepartamentSales: 1
+            numDepartmentSales: 1
         };
         var config = ng.copy(config_default);
 
-        // default departaments
-        var departaments =[
+        // default departments
+        var departments =[
             {id: 1, name: 'depto 1', percent: 10.0},
             {id: 2, name: 'depto 2', percent: 12.5},
             {id: 3, name: 'depto 3', percent: 15.0},
@@ -38,11 +38,11 @@
                 if (config_.numSales) {
                     config.numSales = config_.numSales;
                 }
-                if (config_.numDepartamentItens) {
-                    config.numDepartamentItens = config_.numDepartamentItens;
+                if (config_.numDepartmentItens) {
+                    config.numDepartmentItens = config_.numDepartmentItens;
                 }
-                if (config_.numDepartamentSales) {
-                    config.numDepartamentSales = config_.numDepartamentSales;
+                if (config_.numDepartmentSales) {
+                    config.numDepartmentSales = config_.numDepartmentSales;
                 }
                 return this;
             },
@@ -50,7 +50,7 @@
                 var order = {
                     itens: [],
                     sales: [],
-                    codeNF: ''+Math.floor((Math.random() * 100000)),
+                    codeNF: 'NF'+Math.floor((Math.random() * 100000)),
                     total: 0.0
                 };
                 // generate item list
@@ -59,8 +59,8 @@
                         // random item value - between 1 - 11,00
                         value: (Math.floor((Math.random() * 1000))/100)+1,
                         name: 'item '+i,
-                        // with item has 1 departament
-                        departament: departaments[i % config.numDepartamentItens]
+                        // with item has 1 department
+                        department: ng.copy(departments[i % config.numDepartmentItens])
                     };
                     // sum item value
                     order.total += item.value;
@@ -71,8 +71,8 @@
                 for (var i=0; i<config.numSales; i++) {
                     var sale = {
                         name: 'sale '+i,
-                        // with sale has 2 departament
-                        departament: departaments[i % config.numDepartamentSales]
+                        // with sale has 1 department
+                        department: ng.copy(departments[i % config.numDepartmentSales])
                     };
                     // add sale
                     order.sales.push(sale);
