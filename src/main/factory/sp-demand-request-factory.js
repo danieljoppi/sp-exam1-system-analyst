@@ -14,7 +14,7 @@
             sayHello : function(name) {
                 return "Hi " + name + "!";
             }
-        }
+        };
     });
 
 })(angular, spExam);

@@ -18,7 +18,8 @@ describe('Service: SpCalculateService', function () {
 
     it('should have a service', function() {
         expect(service).toBeDefined();
-        console.log('service', service);
+
+
         expect(service.opa).toBe(3);
     });
 });
