@@ -12,7 +12,7 @@ install:
 
 before_script:
   - 'npm install -g bower grunt-cli'
-  - 'bower install'
+  #- 'bower install'
 
 script:
   - 'grunt release'
