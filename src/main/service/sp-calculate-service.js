@@ -75,7 +75,7 @@
                         // Valor Total da NF
                         totalNF: order.total
                     };
-                    if (order.sales.length > 1) {
+                    if (order.sales.length == 1) {
                         // Comissao Liquida
                         register.valCommission = register.valTotalItens * (register.percent/100);
                      }
