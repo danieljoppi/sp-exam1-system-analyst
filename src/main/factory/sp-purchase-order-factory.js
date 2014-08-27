@@ -10,7 +10,7 @@
     app.factory('SpPurchaseOrderFactory', function() {
         var config_default = {
             numItens: 1,
-            numDepartmentItens: 1
+            numDepartmentItens: 1,
             numSales: 1,
             numDepartmentSales: 1
         };

@@ -2,7 +2,7 @@
 
 describe('Service: SpCalculateService', function () {
 
-    var service;
+    var service, factory;
     // load the service's module
     beforeEach(function(){
 
@@ -15,11 +15,11 @@ describe('Service: SpCalculateService', function () {
         });
     });
 
-
     it('should have a service', function() {
         expect(service).toBeDefined();
+    });
 
-
-        expect(service.opa).toBe(3);
+    it('test 1 department saler and itens', function() {
+        expect(service).toBeDefined();
     });
 });
